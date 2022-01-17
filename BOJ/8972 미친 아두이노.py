@@ -5,7 +5,7 @@ EMPTY = -3
 dy = (EMPTY, 1, 1, 1, 0, 0, 0, -1, -1, -1)
 dx = (EMPTY, -1, 0, 1, -1, 0, 1, -1, 0, 1)
 
-loc_man = [(y, x) for y in range(R) for x in range(C) if board[y][x] == 'I'][0]
+loc_jongsu = [(y, x) for y in range(R) for x in range(C) if board[y][x] == 'I'][0]
 loc_ardu = [(y, x) for y in range(R) for x in range(C) if board[y][x] == 'R']
 
 
@@ -14,20 +14,20 @@ def pboard():
         print("".join(r))
 
 
-def isArduion(y, x):
+def isCrazyArduino(y, x):
     return board[y][x] == 'R'
 
 
 def move_arduino(direction):
-    global loc_man
-    y, x = loc_man
+    global loc_jongsu
+    y, x = loc_jongsu
     ny = y + dy[direction]
     nx = x + dx[direction]
 
-    if isArduion(ny, nx):
+    if isCrazyArduino(ny, nx):
         return False
     else:
-        loc_man = (ny, nx)
+        loc_jongsu = (ny, nx)
         board[y][x] = "."
         board[ny][nx] = "I"
         return True
@@ -35,10 +35,10 @@ def move_arduino(direction):
 
 def move_crazy_arduino():
     global loc_ardu
-    man_y, man_x = loc_man
+    man_y, man_x = loc_jongsu
     new_loc_ardu = []
     loc_count = {}
-    
+
     for y, x in loc_ardu:
         board[y][x] = "."
         min_dist = 99999999
@@ -55,17 +55,21 @@ def move_crazy_arduino():
                 min_dist = dist
                 min_loc = (ny, nx)
 
-        if min_loc == loc_man: # 아두이노와 만남
+        if min_loc == loc_jongsu: # 아두이노와 만남
             return False
         new_loc_ardu.append(min_loc) # 아두이노가 안겹치는 경우
+
+        # 위치에 대한 아두이노 개수 파악
         if min_loc in loc_count.keys():
             loc_count[min_loc] += 1
         else:
             loc_count[min_loc] = 1
 
+
     tmp_list = []
     for loc in new_loc_ardu:
-        if loc in tmp_list or loc_count[loc] > 1:
+        # 한 위치에 아두이노 여러개가 있는 경우 폭파했다고 가정하여 아두이노 리스트에 포함하지 않음
+        if 음oc in tmp_list or loc_count[loc] > 1:
             continue
         tmp_list.append(loc)
 
@@ -83,7 +87,6 @@ def solve():
         if not move_crazy_arduino():
             print("kraj %d"%(i+1))
             exit()
-
     pboard()
 
 solve()
