@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from collections import defaultdict
 
 T = int(input())
@@ -87,3 +88,6 @@ for t_case in range(1, T+1):
 
     dfs([])
     print(f"#{t_case} {result}")
+=======
+E
+>>>>>>> a7767397a8d87df81d9fe0eac6af1b1a8608da6c
