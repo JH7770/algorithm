@@ -26,7 +26,7 @@ def solution(grid):
                 # 빛을 이동 시켜가며 탐색
                 while not visited[ny][nx][d]:
                     visited[ny][nx][d] = True
-                    count += 1 
+                    count += 1
                     if grid[ny][nx] == "S": # S의 경우 방향 변경 X
                         pass
                     elif grid[ny][nx] == "L": # L의 경우 반시계방향
