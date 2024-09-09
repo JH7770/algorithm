@@ -36,3 +36,5 @@ def init_grid():
 init_grid()
 for row in board:
     print(row)
+
+print("작업...")
