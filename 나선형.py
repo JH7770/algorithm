@@ -37,4 +37,5 @@ init_grid()
 for row in board:
     print(row)
 
+print("나도 작업..")
 print("작업...")
