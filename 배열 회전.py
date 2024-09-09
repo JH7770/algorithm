@@ -14,9 +14,8 @@ def rotate45():
 print("원본")
 for row in board:
     print(row)
-print()
 
-print("시계방향 45도 회전")
 rotated = rotate45()
+
 for row in rotated:
     print(row)
