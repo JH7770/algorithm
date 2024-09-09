@@ -33,6 +33,8 @@ def init_grid():
             move_count = 0 # 초기화
         direction = (direction + 1) % 4 # 방향 변경
 
+        print(direction)
+
 init_grid()
 for row in board:
     print(row)
